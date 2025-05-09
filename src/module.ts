@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, createResolver, addImportsDir } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addImportsDir } from '@nuxt/kit'
 import { DateTime } from 'luxon'
 import type { LuxOptions } from './runtime/types'
 
