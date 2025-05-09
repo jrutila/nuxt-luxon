@@ -1,5 +1,11 @@
 export default defineNuxtConfig({
   modules: ['../src/module'],
-  myModule: {},
   devtools: { enabled: true },
+  luxon: {
+    templates: {
+      my_template: {
+        format: 'yyyy___MM______dd',
+      },
+    },
+  },
 })

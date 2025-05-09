@@ -1,19 +1,49 @@
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, createResolver, addImportsDir } from '@nuxt/kit'
+import { DateTime } from 'luxon'
+import type { LuxOptions } from './runtime/types'
 
-// Module options TypeScript interface definition
-export interface ModuleOptions {}
+const templates = {
+  full: { format: DateTime.DATETIME_FULL },
+  fulls: { format: DateTime.DATETIME_FULL_WITH_SECONDS },
+  huge: { format: DateTime.DATETIME_HUGE },
+  huges: { format: DateTime.DATETIME_HUGE_WITH_SECONDS },
+  med: { format: DateTime.DATETIME_MED },
+  meds: { format: DateTime.DATETIME_MED_WITH_SECONDS },
+  short: { format: DateTime.DATETIME_SHORT },
+  shorts: { format: DateTime.DATETIME_SHORT_WITH_SECONDS },
+  date_full: { format: DateTime.DATE_FULL },
+  date_huge: { format: DateTime.DATE_HUGE },
+  date_med: { format: DateTime.DATE_MED },
+  date_medd: { format: DateTime.DATE_MED_WITH_WEEKDAY },
+  date: { format: DateTime.DATE_SHORT },
+  date_short: { format: DateTime.DATE_SHORT },
+  time24: { format: DateTime.TIME_24_SIMPLE },
+  time24longoffset: { format: DateTime.TIME_24_WITH_LONG_OFFSET },
+  time24s: { format: DateTime.TIME_24_WITH_SECONDS },
+  time: { format: DateTime.TIME_SIMPLE },
+  times: { format: DateTime.TIME_WITH_SECONDS },
+}
 
-export default defineNuxtModule<ModuleOptions>({
-  meta: {
-    name: 'my-module',
-    configKey: 'myModule',
+export const DEFAULT_OPTIONS: LuxOptions = {
+  input: {
+    zone: 'utc',
+    format: 'iso',
   },
-  // Default configuration options of the Nuxt module
-  defaults: {},
-  setup(_options, _nuxt) {
-    const resolver = createResolver(import.meta.url)
+  output: {
+    format: 'short',
+  },
+  templates,
+} as const
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
+export default defineNuxtModule<LuxOptions>({
+  meta: {
+    name: 'nuxt-luxon',
+    configKey: 'luxon',
+  },
+  defaults: DEFAULT_OPTIONS,
+  setup(_options, _nuxt) {
+    const { resolve } = createResolver(import.meta.url)
+    _nuxt.options.runtimeConfig.public.luxon = _options
+    addImportsDir(resolve('./runtime/composables'))
   },
 })
