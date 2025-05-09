@@ -1,8 +1,21 @@
 {
   "name": "nuxt-luxon",
   "version": "1.0.0",
-  "description": "My new Nuxt module",
+  "description": "Easy DateTime formatting & parsing in Vue using Luxon",
+  "author": "Donald Shtjefni <dnld.sht@gmail.com>",
   "repository": "dnldsht/nuxt-luxon",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "nuxt",
+    "nuxt3",
+    "luxon",
+    "date",
+    "datetime",
+    "time",
+    "format",
+    "parse"
+  ],
   "license": "MIT",
   "type": "module",
   "exports": {
