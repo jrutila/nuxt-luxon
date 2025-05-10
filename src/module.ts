@@ -33,7 +33,7 @@ export const DEFAULT_OPTIONS: LuxOptions = {
     format: 'short',
   },
   templates,
-} as const
+}
 
 export default defineNuxtModule<LuxOptions>({
   meta: {
@@ -43,6 +43,7 @@ export default defineNuxtModule<LuxOptions>({
   defaults: DEFAULT_OPTIONS,
   setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url)
+    // @ts-expect-error don't know how to type this
     _nuxt.options.runtimeConfig.public.luxon = _options
     addImportsDir(resolve('./runtime/composables'))
   },

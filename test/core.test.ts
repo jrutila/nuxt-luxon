@@ -6,7 +6,7 @@ import { DEFAULT_OPTIONS } from '../src/module'
 import type { LuxOptions } from '../src/runtime/types'
 
 function init(_options: LuxOptions = {}) {
-  const options = defu(_options, DEFAULT_OPTIONS)
+  const options = defu(_options, DEFAULT_OPTIONS) as Required<LuxOptions>
   const $luxon = luxFormat(options)
   const $lp = luxParse(options)
   return { $luxon, $lp }
@@ -55,8 +55,9 @@ describe('datetimes', () => {
       expect($luxon(date, format), format).toBe(expected)
     }
 
-    expect($luxon(date, 'jsdate').getTime()).toBe(new Date(1720787029 * 1000).getTime())
+    expect(($luxon(date, 'jsdate') as Date).getTime()).toBe(new Date(1720787029 * 1000).getTime())
     expect($luxon(date, 'relative')).toMatch('ago')
+    // @ts-expect-error testing invalid input where format is a number
     expect(() => $luxon(date, { format: 1 })).toThrowError(TypeError)
   })
 
@@ -183,16 +184,21 @@ describe('parse', () => {
     ]
 
     expect(() => $lp('2024-07-12', { format: 'jsdate' })).toThrowError(TypeError)
+    // @ts-expect-error testing invalid input: null is not a valid ParseInput
     expect(() => $lp(null, { format: 'jsdate' })).toThrowError(TypeError)
 
     expect(() => $lp('2024-07-12', { format: 'millis' })).toThrowError(TypeError)
+    // @ts-expect-error testing invalid input: null is not a valid ParseInput
     expect(() => $lp(null, { format: 'millis' })).toThrowError(TypeError)
 
     expect(() => $lp('2024-07-12', { format: 'seconds' })).toThrowError(TypeError)
+    // @ts-expect-error testing invalid input: null is not a valid ParseInput
     expect(() => $lp(null, { format: 'seconds' })).toThrowError(TypeError)
 
+    // @ts-expect-error testing invalid input: format option value must be a string, not a number
     expect(() => $lp('2024-07-12', { format: 0 })).toThrowError(TypeError)
-    expect(() => $lp(0, { format: 'short' })).toThrowError(TypeError)
+    expect(() => $lp(0, { format: 'short' })).toThrowError(TypeError) // Assuming 0 is not a valid ParseInput here
+    // @ts-expect-error testing invalid input: null is not a valid ParseInput
     expect(() => $lp(null, { format: 'short' })).toThrowError(TypeError)
 
     for (const { format, value } of formats) {

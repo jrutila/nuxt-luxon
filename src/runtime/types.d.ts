@@ -2,7 +2,7 @@ import type { DateTime, DateTimeFormatOptions, ToISOTimeOptions, ToRelativeOptio
 
 export interface InputOptions {
   zone?: string | Zone
-  format: string
+  format?: string
 }
 
 export interface OutputOptions {
