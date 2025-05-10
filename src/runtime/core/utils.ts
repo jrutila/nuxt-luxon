@@ -1,10 +1,10 @@
 import { defu } from 'defu'
-import type { FormatInputOptions, FormatOutputOptions, InputOptions, LuxOptions, OutputOptions, ParseInput } from '../types'
+import type { FormatInputOptions, FormatOutputOptions, InputOptions, LuxonOptions, OutputOptions, ParseInput } from '../types'
 import type { ParseOptions } from './parse'
 import formatDateTime from './format'
 import parseInput from './parse'
 
-function extendInput(luxOptions: Required<LuxOptions>, value: ParseInput, format?: FormatInputOptions): ParseOptions {
+function extendInput(luxOptions: Required<LuxonOptions>, value: ParseInput, format?: FormatInputOptions): ParseOptions {
   let options = typeof format === 'string' ? { format } : format
   if (options === undefined) {
     options = {}
@@ -33,7 +33,7 @@ function extendInput(luxOptions: Required<LuxOptions>, value: ParseInput, format
   return { value, ...opts } as ParseOptions
 }
 
-function extendOutput(luxOptions: Required<LuxOptions>, format?: FormatOutputOptions): OutputOptions {
+function extendOutput(luxOptions: Required<LuxonOptions>, format?: FormatOutputOptions): OutputOptions {
   if (!format) {
     format = luxOptions.output
   }
@@ -49,11 +49,11 @@ function extendOutput(luxOptions: Required<LuxOptions>, format?: FormatOutputOpt
   return opts as OutputOptions
 }
 
-export function luxParse(luxOptions: Required<LuxOptions>) {
+export function luxParse(luxOptions: Required<LuxonOptions>) {
   return (value: ParseInput, format?: FormatInputOptions) => parseInput(extendInput(luxOptions, value, format))
 }
 
-export function luxFormat(luxOptions: Required<LuxOptions>) {
+export function luxFormat(luxOptions: Required<LuxonOptions>) {
   const p = luxParse(luxOptions)
   return (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => {
     const dt = p(value, inputFormat)

@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest'
 import defu from 'defu'
 import { luxFormat, luxParse } from '../src/runtime/core/utils'
 import { DEFAULT_OPTIONS } from '../src/module'
-import type { LuxOptions } from '../src/runtime/types'
+import type { LuxonOptions } from '../src/runtime/types'
 
-function init(_options: LuxOptions = {}) {
-  const options = defu(_options, DEFAULT_OPTIONS) as Required<LuxOptions>
+function init(_options: LuxonOptions = {}) {
+  const options = defu(_options, DEFAULT_OPTIONS) as Required<LuxonOptions>
   const $luxon = luxFormat(options)
   const $lp = luxParse(options)
   return { $luxon, $lp }

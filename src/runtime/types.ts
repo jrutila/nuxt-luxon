@@ -14,7 +14,7 @@ export interface OutputOptions {
   iso?: ToISOTimeOptions
 }
 
-export interface LuxOptions {
+export interface LuxonOptions {
   templates?: Record<string, OutputOptions>
   input?: InputOptions
   output?: OutputOptions

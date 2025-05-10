@@ -1,6 +1,6 @@
 import { defineNuxtModule, createResolver, addImportsDir } from '@nuxt/kit'
 import { DateTime } from 'luxon'
-import type { LuxOptions } from './runtime/types'
+import type { LuxonOptions } from './runtime/types'
 
 const templates = {
   full: { format: DateTime.DATETIME_FULL },
@@ -24,7 +24,7 @@ const templates = {
   times: { format: DateTime.TIME_WITH_SECONDS },
 }
 
-export const DEFAULT_OPTIONS: LuxOptions = {
+export const DEFAULT_OPTIONS: LuxonOptions = {
   input: {
     zone: 'utc',
     format: 'iso',
@@ -35,7 +35,7 @@ export const DEFAULT_OPTIONS: LuxOptions = {
   templates,
 }
 
-export default defineNuxtModule<LuxOptions>({
+export default defineNuxtModule<LuxonOptions>({
   meta: {
     name: 'nuxt-luxon',
     configKey: 'luxon',
