@@ -107,8 +107,3 @@ const fromJs = $lp(new Date())            // Parse JS Date object
 const custom = $lp('05/10/2025', 'MM/dd/yyyy')
 ```
 
-## Next Steps
-
-- Learn about [configuration options](/guide/configuration) to customize Nuxt Luxon for your project
-- Explore the [built-in templates](/guide/templates) for quick and consistent formatting
-- Check out the [API reference](/api/) for detailed information on all available methods
