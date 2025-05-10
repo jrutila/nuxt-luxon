@@ -3,7 +3,10 @@
   "version": "1.1.0",
   "description": "Easy DateTime formatting & parsing in Vue using Luxon",
   "author": "Donald Shtjefni <dnld.sht@gmail.com>",
-  "repository": "dnldsht/nuxt-luxon",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dnldsht/nuxt-luxon.git"
+  },
   "keywords": [
     "vue",
     "vuejs",
