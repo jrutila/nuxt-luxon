@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.1.1
+
+[compare changes](https://github.com/dnldsht/nuxt-luxon/compare/v1.1.0...v1.1.1)
+
+### 🩹 Fixes
+
+- Repo npm ([43e9d67](https://github.com/dnldsht/nuxt-luxon/commit/43e9d67))
+- Repo npm ([1b8f291](https://github.com/dnldsht/nuxt-luxon/commit/1b8f291))
+
+### 🏡 Chore
+
+- Fix build error ([0ee9184](https://github.com/dnldsht/nuxt-luxon/commit/0ee9184))
+- **release:** V1.1.0 ([541438b](https://github.com/dnldsht/nuxt-luxon/commit/541438b))
+
+### ❤️ Contributors
+
+- Donald Shtjefni ([@dnldsht](https://github.com/dnldsht))
+
 ## v1.1.0
 
 
