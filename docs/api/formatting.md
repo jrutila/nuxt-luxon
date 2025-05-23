@@ -22,8 +22,8 @@ interface OutputOptions {
 ## Format Options
 
 - **format**: The format to use for formatting.
-  - **Set of Tokens**: You can use a set of tokens to define the output format. Tokens represent different parts of the date and time, such as year, month, day, hour, minute, etc. See [Tokens](#tokens) for possible values.
-  - **Template Name**: You can specify the name of a predefined template. Templates are predefined formats that can be used to quickly format dates and times. See [Templates](#templates) for possible values.
+  - **Set of Tokens**: You can use a set of tokens to define the output format. Tokens represent different parts of the date and time, such as year, month, day, hour, minute, etc. See [Tokens](/api/tokens) for possible values.
+  - **Template Name**: You can specify the name of a predefined template. Templates are predefined formats that can be used to quickly format dates and times. See [Templates](/guide/configuration#templates) for possible values.
   - **DateTimeFormatOptions**: Options for the DateTime format. See [DateTimeFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for possible values.
 
 - **locale**: The locale to use for formatting. If not set, the client's locale will be used.

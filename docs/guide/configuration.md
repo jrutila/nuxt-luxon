@@ -2,25 +2,20 @@
 
 Nuxt Luxon provides various configuration options to customize its behavior. These options can be set in your `nuxt.config.ts` file.
 
-## Basic Configuration
-
-Add the module to your Nuxt configuration and provide options:
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   modules: ['nuxt-luxon'],
   luxon: {
-    // your options here
+    input: {}, // Default input options
+    output: {}, // Default output options
+    templates: {}, // Custom templates
   }
 })
 ```
 
-## Configuration Options
-
-The `luxon` configuration accepts a `LuxonOptions` object with the following properties:
-
-### Input Options
+## Input
 
 Control how string dates are parsed by default:
 
@@ -35,7 +30,7 @@ luxon: {
 
 | Option | Type | Description |
 |--------|------|-------------|
-| `zone` | `string \| Zone` | Default timezone to use when parsing dates. Can be a string like 'America/New_York' or a Luxon Zone object. |
+| `zone` | `string` | Default timezone to use when parsing dates. Can be a string like 'America/New_York' |
 | `format` | `string` | Default format string to use when parsing dates. |
 
 ### Output Options
@@ -45,7 +40,7 @@ Configure how dates are displayed by default:
 ```ts
 luxon: {
   output: {
-    zone: 'client',       // Timezone for output
+    zone: 'local',       // Timezone for output
     locale: 'client',     // Locale for formatting
     format: 'short',      // Default format string
     relative: {...},      // See below for options
@@ -57,7 +52,7 @@ luxon: {
 
 | Option | Type | Description |
 |--------|------|-------------|
-| `zone` | `string \| Zone` | Timezone to use for formatted output. Can be a string like 'UTC' or a Luxon Zone object. |
+| `zone` | `string` | Timezone to use for formatted output. Can be a string like 'UTC' |
 | `locale` | `string` | Locale to use for formatting (e.g., 'en-US', 'fr-FR'). |
 | `format` | `string \| DateTimeFormatOptions \| Intl.DateTimeFormatOptions` | Format string or options object for date formatting. |
 | `relative` | `ToRelativeOptions` | Options for relative time formatting. [See Luxon documentation](https://moment.github.io/luxon/api-docs/index.html#datetimetorelative) |
@@ -73,7 +68,7 @@ luxon: {
   templates: {
     // Define your custom templates
     userDate: {
-      zone: 'client',
+      zone: 'local',
       format: 'dd MM yyyy',
     },
     serverAMS: {

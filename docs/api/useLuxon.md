@@ -24,16 +24,16 @@ The return value depends on how you call the composable:
 
 ```ts
 // Format a date directly
-const formattedDate = useLuxon('2023-01-01', 'DATE_SHORT')
+const formattedDate = useLuxon('2023-01-01', 'date_short')
 
 // Get formatting and parsing functions
 const { $luxon, $lf, $lp } = useLuxon()
 
 // Format a date with the formatting function
-const date = $luxon('2023-01-01', 'DATE_MED')
+const date = $luxon('2023-01-01', 'date_med')
 
 // Alias for formatting
-const sameDate = $lf('2023-01-01', 'DATE_MED')
+const sameDate = $lf('2023-01-01', 'date_med')
 
 // Parse a date string
 const dateObject = $lp('January 1, 2023', 'MMMM d, yyyy')
@@ -48,9 +48,9 @@ You can use the composable with custom format options:
 const customFormat = useLuxon(new Date(), 'yyyy-MM-dd HH:mm:ss')
 
 // With input format specified
-const specificFormat = useLuxon('01/02/2023', 'DATE_MED', { format: 'MM/dd/yyyy' })
+const specificFormat = useLuxon('01/02/2023', 'date_med', { format: 'MM/dd/yyyy' })
 
 // With timezone handling
-const timezoned = useLuxon('2023-01-01T12:00:00Z', { format: 'DATE_MED', timezone: 'America/New_York' })
+const timezoned = useLuxon('2023-01-01T12:00:00Z', { format: 'date_med', zone: 'America/New_York' })
 ```
 

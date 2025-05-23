@@ -36,8 +36,8 @@ interface InputOptions {
 | millis         | Unix timestamp milliseconds          | `1542674993410`                                             |
 | Date           | JavaScript Date object               | `new Date('2020-10-05T14:48:00.000Z')`                      |
 | DateTime       | Luxon DateTime object                | `DateTime.fromISO('2020-10-05T14:48:00.000Z')`              |
-| _tokens_       | see: Tokens               | `yyyy-MM-dd`                                                |
-| *templateName* | see: Templates         |                                                             |
+| _tokens_       | see: [Tokens](/api/tokens)               | `yyyy-MM-dd`                                                |
+| *templateName* | see: [Templates](/guide/configuration#templates)         |                                                             |
 
 ## Examples
 

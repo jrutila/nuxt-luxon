@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-luxon', // Add the module here
   ],
-  // default options
+  // Default options
   luxon: {
     input: {
       zone: 'utc',
