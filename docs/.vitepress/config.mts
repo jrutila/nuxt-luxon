@@ -2,6 +2,9 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  sitemap: {
+    hostname: 'https://nuxt-luxon.donld.me',
+  },
   title: 'Nuxt Luxon',
   description: 'Easy DateTime formatting & parsing with Luxon in Nuxt applications',
   themeConfig: {
@@ -12,9 +15,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
-      // { text: 'Examples', link: '/examples/' },
     ],
-
     sidebar: [
       {
         text: 'Introduction',
@@ -33,11 +34,10 @@ export default defineConfig({
         ],
       },
     ],
-
     socialLinks: [
+      { icon: 'personio', link: 'https://donld.me' },
       { icon: 'github', link: 'https://github.com/dnldsht/nuxt-luxon' },
     ],
-
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2025-present Donald Shtjefni',
