@@ -1,7 +1,16 @@
+import type { DateTime } from 'luxon'
 import type { ParseInput, FormatInputOptions, FormatOutputOptions, LuxonOptions } from '../types'
 import { luxFormat, luxParse } from '../core/utils'
 
 import { useRuntimeConfig } from '#app'
+
+export function useLuxon(value: ParseInput, outuputFormat?: FormatOutputOptions, inputFormat?: FormatInputOptions): string
+
+export function useLuxon(): {
+  $luxon: (value: ParseInput, outuputFormat?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string
+  $lf: (value: ParseInput, outuputFormat?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string
+  $lp: (value: ParseInput, format?: FormatInputOptions) => DateTime
+}
 
 export function useLuxon(value?: ParseInput, outuputFormat?: FormatOutputOptions, inputFormat?: FormatInputOptions) {
   const options = useRuntimeConfig().public.luxon as Required<LuxonOptions>
