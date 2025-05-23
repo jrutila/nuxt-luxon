@@ -7,8 +7,9 @@
 
 Integrates the [Luxon library](https://moment.github.io/luxon/) with Nuxt 3, providing a simple and powerful way to work with dates and times in your Nuxt application.
 
+- [📚 &nbsp;Docs](https://nuxt-luxon.donld.me)
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-- [🏀 Online playground](https://stackblitz.com/github/dnldsht/nuxt-luxon?file=playground%2Fapp.vue)
+- [🏀 &nbsp;Online playground](https://stackblitz.com/github/dnldsht/nuxt-luxon?file=playground%2Fapp.vue)
 
 ## Features
 
@@ -17,7 +18,7 @@ Integrates the [Luxon library](https://moment.github.io/luxon/) with Nuxt 3, pro
 - 🌐 Global date/time utilities via composables
 - 🎛️ Fully customizable via module options
 - 📝 Fully typed with TypeScript support
-- ✅ Thoroughly tested for reliability
+- ✅ Fully tested for reliability
 
 ## Installation
 
@@ -38,7 +39,24 @@ Add `nuxt-luxon` to the `modules` section of your `nuxt.config.ts`:
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['nuxt-luxon']
+  modules: [
+    'nuxt-luxon', // Add the module here
+  ],
+  // default options
+  luxon: {
+    input: {
+      zone: 'utc',
+      format: 'iso',
+    },
+    output: {
+      format: 'short',
+      zone: 'local',
+      locale: 'client',
+    },
+    templates: {
+      // Custom templates
+    },
+  },
 })
 ```
 
@@ -48,11 +66,11 @@ export default defineNuxtConfig({
 <template>
   <div>
     <!-- Format dates with predefined templates -->
-    <p>Date (short): {{ $luxon(new Date(), 'short') }}</p>
-    <p>Date (full): {{ $luxon(new Date(), 'full') }}</p>
+    <p>{{ $luxon(new Date()) }}</p>
+    <p>{{ $luxon(new Date(), 'full') }}</p>
     
     <!-- Custom format strings -->
-    <p>Custom format: {{ $luxon(new Date(), 'yyyy-MM-dd') }}</p>
+    <p>{{ $luxon(new Date(), 'yyyy-MM-dd') }}</p>
   </div>
 </template>
 
@@ -68,37 +86,6 @@ const formattedDate = $luxon(parsedDate, 'full')
 </script>
 ```
 
-## Configuration
-
-You can customize the default options and add your own templates in `nuxt.config.ts`:
-
-```ts
-export default defineNuxtConfig({
-  modules: ['nuxt-luxon'],
-  luxon: {
-    // Default input options
-    input: {
-      zone: 'utc',      // Default timezone for parsing
-      format: 'iso',    // Default format for parsing
-    },
-    
-    // Default output options
-    output: {
-      format: 'short', // Default output format
-      // You can also specify locale, timezone, etc.
-    },
-    
-    // Custom templates
-    templates: {
-      my_custom_format: { 
-        format: 'yyyy___MM___dd',
-      },
-      // You can also override built-in templates
-    }
-  }
-})
-```
-
 ## Custom Templates
 
 Templates can be used for both parsing and formatting dates. This is especially useful when you need consistent date formats across your application or when working with specific regional formats.
@@ -109,7 +96,7 @@ export default defineNuxtConfig({
   luxon: {
     templates: {
       userDate: {
-        zone: 'client',
+        zone: 'local',
         format: 'dd MM yyyy',
       },
       serverAMS: {
