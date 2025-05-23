@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { $luxon, $lp } = useLuxon()
 
 const now = new Date()

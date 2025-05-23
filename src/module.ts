@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addImportsDir } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addImportsDir, addPlugin } from '@nuxt/kit'
 import { DateTime } from 'luxon'
 import type { LuxonOptions } from './runtime/types'
 
@@ -24,7 +24,9 @@ const templates = {
   times: { format: DateTime.TIME_WITH_SECONDS },
 }
 
-export const DEFAULT_OPTIONS: LuxonOptions = {
+type ModuleOptions = LuxonOptions & { injectUtils?: boolean }
+
+export const DEFAULT_OPTIONS: ModuleOptions = {
   input: {
     zone: 'utc',
     format: 'iso',
@@ -33,9 +35,10 @@ export const DEFAULT_OPTIONS: LuxonOptions = {
     format: 'short',
   },
   templates,
+  injectUtils: true,
 }
 
-export default defineNuxtModule<LuxonOptions>({
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-luxon',
     configKey: 'luxon',
@@ -46,5 +49,8 @@ export default defineNuxtModule<LuxonOptions>({
     // @ts-expect-error don't know how to type this
     _nuxt.options.runtimeConfig.public.luxon = _options
     addImportsDir(resolve('./runtime/composables'))
+    if (_options.injectUtils) {
+      addPlugin(resolve('./runtime/plugins/luxon-utils'))
+    }
   },
 })
