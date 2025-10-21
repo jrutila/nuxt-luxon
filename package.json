@@ -1,6 +1,6 @@
 {
   "name": "@jrutila/nuxt-luxon",
-  "version": "1.2.0-jrutila",
+  "version": "1.2.0-jrutila-2",
   "description": "Easy DateTime formatting & parsing in Vue using Luxon",
   "author": "Donald Shtjefni <dnld.sht@gmail.com>",
   "repository": {
