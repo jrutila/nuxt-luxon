@@ -5,6 +5,8 @@ import type { OutputOptions } from '../types'
 let useI18nInstance: typeof useI18n | null = null
 await import('vue-i18n').then(({ useI18n }) => {
   useI18nInstance = useI18n
+}).catch(() => {
+  useI18nInstance = undefined
 })
 
 export default function format(dt: DateTime, options: OutputOptions) {
