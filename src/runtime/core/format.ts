@@ -1,10 +1,25 @@
 import type { DateTime } from 'luxon'
+import type { useI18n } from 'vue-i18n'
 import type { OutputOptions } from '../types'
+
+let useI18nInstance: typeof useI18n | null = null
+await import('vue-i18n').then(({ useI18n }) => {
+  useI18nInstance = useI18n
+})
 
 export default function format(dt: DateTime, options: OutputOptions) {
   dt = dt.setZone(options.zone)
   if (options.locale) {
-    dt = dt.setLocale(options.locale)
+    if (options.locale === 'i18n') {
+      if (!useI18nInstance) {
+        throw new Error('vue-i18n is not available, do not use locale: "i18n"')
+      }
+      const { locale } = useI18nInstance()
+      dt = dt.setLocale(locale.value)
+    }
+    else {
+      dt = dt.setLocale(options.locale)
+    }
   }
 
   if (typeof options.format === 'object') {
