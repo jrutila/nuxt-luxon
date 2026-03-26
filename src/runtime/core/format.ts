@@ -23,7 +23,9 @@ export default function format(dt: DateTime, options: OutputOptions) {
       }
       try {
         const { locale } = useI18nInstance()
-        lastKnownLocale = locale.value
+        if (import.meta.client) {
+          lastKnownLocale = locale.value
+        }
       }
       catch (error: any) {
         if (error.code === 26) {
@@ -34,7 +36,7 @@ export default function format(dt: DateTime, options: OutputOptions) {
           throw error
         }
       }
-      if (lastKnownLocale) {
+      if (import.meta.client && lastKnownLocale) {
         dt = dt.setLocale(lastKnownLocale)
       }
     }
