@@ -12,14 +12,14 @@ function init(_options: LuxonOptions = {}) {
   return { $luxon, $lp }
 }
 
+vi.mock('vue-i18n', () => ({
+  useI18n: () => ({
+    locale: ref('it'),
+  }),
+}))
+
 describe('nuxt-i18n datetimes', () => {
   it('format', () => {
-    vi.mock('vue-i18n', () => ({
-      useI18n: () => ({
-        locale: ref('it'),
-      }),
-    }))
-
     const { $luxon } = init({
       output: {
         zone: 'utc',
