@@ -2,8 +2,15 @@ export default defineNuxtConfig({
   modules: [
     '../src/module',
     '@nuxtjs/i18n',
+    '@nuxt/ui',
   ],
-  devtools: { enabled: true },
+  ssr: false,
+  devtools: {
+    enabled: true,
+  },
+  css: [
+    '~/assets/css/main.css',
+  ],
   compatibilityDate: '2025-05-23',
   i18n: {
     locales: [

@@ -23,31 +23,11 @@
         {{ format }}: {{ $luxon(now, format) }}
       </li>
     </ul>
-
-    <h2>parse</h2>
-    <input
-      v-model="date"
-      type="date"
-    >
-    +2 days = {{ plusTwoDays }}
-    <button
-      v-if="date"
-      @click="moveDate(2)"
-    >
-      +2 days
-    </button>
-
-    <h2>humanization</h2>
-    <input
-      v-model="relativeOtherDate"
-      type="datetime-local"
-    >
-    {{ relativeDate }}
   </div>
 </template>
 
 <script setup lang="ts">
-const { $luxon, $lp } = useLuxon()
+const { $luxon } = useLuxon()
 
 const { locale, locales, setLocale } = useI18n()
 
@@ -79,25 +59,4 @@ const formats = [
   'yyyy-MM-dd',
   'my_template',
 ]
-
-const date = ref<string | null>(null)
-const relativeOtherDate = ref(null)
-
-const plusTwoDays = computed(() => {
-  if (!date.value) return null
-  const parsedDate = $lp(date.value)
-  return $luxon(parsedDate.plus({ days: 2 }), 'yyyy-MM-dd')
-})
-
-const relativeDate = computed(() => {
-  if (!relativeOtherDate.value) return null
-  const parsedDate = $lp(relativeOtherDate.value)
-  return $luxon(parsedDate, 'relative')
-})
-
-async function moveDate(days: number) {
-  if (!date.value) return
-  const parsedDate = $lp(date.value)
-  date.value = $luxon(parsedDate.plus({ days }), 'yyyy-MM-dd')
-}
 </script>
