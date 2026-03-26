@@ -1,13 +1,16 @@
 import type { DateTime } from 'luxon'
-import type { useI18n } from 'vue-i18n'
+import type { Ref } from 'vue'
 import type { OutputOptions } from '../types'
 
-let useI18nInstance: typeof useI18n | null = null
-await import('vue-i18n').then(({ useI18n }) => {
-  useI18nInstance = useI18n
-}).catch(() => {
+type UseI18nCompat = () => { locale: Ref<string> }
+let useI18nInstance: UseI18nCompat | undefined
+try {
+  const mod = await import('vue-i18n')
+  useI18nInstance = mod.useI18n as unknown as UseI18nCompat
+}
+catch {
   useI18nInstance = undefined
-})
+}
 
 let lastKnownLocale: string | null = null
 
@@ -22,7 +25,7 @@ export default function format(dt: DateTime, options: OutputOptions) {
         const { locale } = useI18nInstance()
         lastKnownLocale = locale.value
       }
-      catch (error) {
+      catch (error: any) {
         if (error.code === 26) {
           // Must be called on top of setup, this happens if, for example, used in async function
           // revert to last known locale
