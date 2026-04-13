@@ -3,13 +3,15 @@ import type { Ref } from 'vue'
 import type { OutputOptions } from '../types'
 
 type UseI18nCompat = () => { locale: Ref<string> }
-let useI18nInstance: UseI18nCompat | undefined
-try {
-  const mod = await import('vue-i18n')
-  useI18nInstance = mod.useI18n as unknown as UseI18nCompat
-}
-catch {
-  useI18nInstance = undefined
+let useI18nInstance: UseI18nCompat | undefined | false
+if (useI18nInstance === undefined) {
+  try {
+    const mod = await import('vue-i18n')
+    useI18nInstance = mod.useI18n as unknown as UseI18nCompat
+  }
+  catch {
+    useI18nInstance = false
+  }
 }
 
 let lastKnownLocale: string | null = null
